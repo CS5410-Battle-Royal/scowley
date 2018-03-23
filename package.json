@@ -1,0 +1,14 @@
+{
+  "name": "cs5410-battle-royal",
+  "version": "1.0.0",
+  "description": "Battle Royal game for USU CS5410",
+  "main": "loginServer.js",
+  "scripts": {
+    "start": "node loginServer.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "requirejs": "^2.3.5",
+    "sqlite3": "^4.0.0"
+  }
+}
