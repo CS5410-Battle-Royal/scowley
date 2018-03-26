@@ -17,13 +17,34 @@
 		<input type="text" id="id-username" name="name-username">
 		<br>
 		<label>Password: </label>
-		<input type="password" id="id=password" name="name-password">
+		<input type="password" id="id-password" name="name-password">
+		<br>
+		<label>Confirm Password: </label>
+		<input type="password" id="id-password2" name="name-password2">
+		<br>
+		<span id="span-error"></span>
 		<br><br>
 		<input type="submit" id="button-signin" value="Sign In">
 	</form>
 </div>
 
+<script>
+	document.getElementById('button-signin').disabled = true;
+	let passMatch = function(){
+		let p1 = document.getElementById('id-password').value;
+		let p2 = document.getElementById('id-password2').value;
+		if(p1 !== "" && p1 === p2){
+			document.getElementById('button-signin').disabled = false;
+			document.getElementById('span-error').innerHTML = "";
+		} else{
+			document.getElementById('span-error').innerHTML = "Passwords don't match";
+		}
+	};
 
+	document.getElementById('id-password').addEventListener('change', passMatch)
+	document.getElementById('id-password2').addEventListener('change', passMatch)
+
+</script>
 
 </body>
 </html>

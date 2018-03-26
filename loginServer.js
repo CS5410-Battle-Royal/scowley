@@ -19,20 +19,6 @@ var db = new sqlite.Database('users.db');
 db.serialize(function() {
   db.run("CREATE TABLE IF NOT EXISTS users (user TEXT UNIQUE, pass TEXT)");
 });
- 
-//   var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-//   for (var i = 0; i < 10; i++) {
-//       stmt.run("Ipsum " + i);
-//   }
-//   stmt.finalize();
- 
-//   db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-//       console.log(row.id + ": " + row.info);
-//   });
- 
-// db.close();
-
-
 
 var app = express();
 
@@ -40,7 +26,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/signup.html', function(request, response) {
 
-  //res.send('You sent the name "' + req.body['name-username'] + '".');
   db.run('INSERT INTO users(user,pass) VALUES (?,?)', [request.body['name-username'], request.body['name-password']],function(err, row){
     if(err){
       console.log(err);
