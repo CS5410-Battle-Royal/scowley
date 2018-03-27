@@ -22,8 +22,8 @@
 		<label>Confirm Password: </label>
 		<input type="password" id="id-password2" name="name-password2">
 		<br>
-		<span id="span-error"></span>
-		<br><br>
+		<span id="span-error" style="color:red"></span>
+		<br>
 		<input type="submit" id="button-signin" value="Sign In">
 	</form>
 </div>
@@ -37,12 +37,13 @@
 			document.getElementById('button-signin').disabled = false;
 			document.getElementById('span-error').innerHTML = "";
 		} else{
-			document.getElementById('span-error').innerHTML = "Passwords don't match";
+			document.getElementById('button-signin').disabled = true;
+			document.getElementById('span-error').innerHTML = "Error: Passwords don't match";
 		}
 	};
 
-	document.getElementById('id-password').addEventListener('change', passMatch)
-	document.getElementById('id-password2').addEventListener('change', passMatch)
+	document.getElementById('id-password').addEventListener('keyup', passMatch)
+	document.getElementById('id-password2').addEventListener('keyup', passMatch)
 
 </script>
 
