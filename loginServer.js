@@ -17,7 +17,7 @@ let mimeTypes = {
 var db = new sqlite.Database('users.db');
  
 db.serialize(function() {
-  db.run("CREATE TABLE IF NOT EXISTS users (user TEXT UNIQUE, pass TEXT)");
+  db.run("CREATE TABLE IF NOT EXISTS users (user TEXT PRIMARY KEY, pass TEXT)");
 });
 
 var app = express();
@@ -28,7 +28,11 @@ app.post('/signup.html', function(request, response) {
 
   db.run('INSERT INTO users(user,pass) VALUES (?,?)', [request.body['name-username'], request.body['name-password']],function(err, row){
     if(err){
-      console.log(err);
+      if(err.errno === 19) {
+        console.log("User already exists");
+      } else {
+        console.log(err);
+      }
     }else {
       fs.readFile('game.html', function(err, data) {
         if (err) {
