@@ -6,8 +6,14 @@
   "scripts": {
     "start": "node loginServer.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CS5410-Battle-Royal/scowley.git"
+  },
+  "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "nodemon": "^1.17.2",
     "requirejs": "^2.3.5",
     "sqlite3": "^4.0.0"
   }
