@@ -49,7 +49,7 @@ app.post('/signin.html', function(request, response) {
   db.get('SELECT pass FROM users WHERE user = ?', request.body['name-username'],function(err, row){
     if(err){
       console.log(err);
-    }else if(row.pass === request.body['name-password']){
+    }else if(typeof row !== 'undefined' && row.pass === request.body['name-password']){
       fs.readFile('game.html', function(err, data) {
         if (err) {
           response.writeHead(500);
