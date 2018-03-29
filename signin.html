@@ -17,11 +17,20 @@
 			<input type="text" id="id-username" name="name-username">
 			<br>
 			<label>Password: </label>
-			<input type="password" id="id=password" name="name-password">
+			<input type="password" id="id-password" name="name-password">
 			<br><br>
-			<input type="submit" id="button-signin" value="Sign In">
+			<button id="button-signin">Sign In</button>
 		</form>
 	</div>	
+
+	<script>
+		document.getElementById("button-signin").addEventListener("click", function(){
+			let req = new XMLHttpRequest();
+			req.open("POST", "/signin.html");
+			req.send({'name-username': document.getElementById("id-username").value(), 'name-password': document.getElementById("id-password").value()});
+		})
+	
+	</script>
 
 </body>
 </html>
