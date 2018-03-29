@@ -24,6 +24,8 @@ var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
+app.use('/css',express.static(path.join(__dirname,'css')));
+
 app.post('/signup.html', function(request, response) {
 
   db.run('INSERT INTO users(user,pass) VALUES (?,?)', [request.body['name-username'], request.body['name-password']],function(err, row){
