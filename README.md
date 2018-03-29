@@ -4,4 +4,4 @@ Installation:
 Run `npm install`
 
 Starting Server:
-`npm start` or `node loginserver.js` or `nodemon loginserver.js`
+`npm start` or `node gameServer.js` or `nodemon ganeServer.js`
