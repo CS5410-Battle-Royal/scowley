@@ -2,9 +2,9 @@
   "name": "cs5410-battle-royal",
   "version": "1.0.0",
   "description": "Battle Royal game for USU CS5410",
-  "main": "loginServer.js",
+  "main": "gameServer.js",
   "scripts": {
-    "start": "node loginServer.js"
+    "start": "nodemon gameServer.js"
   },
   "repository": {
     "type": "git",
