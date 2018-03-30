@@ -6,6 +6,9 @@ let fs = require('fs');
 let path=require('path');
 var bodyParser = require('body-parser');
 
+let app = express();
+let http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 let mimeTypes = {
   '.js' : 'text/javascript',
@@ -18,12 +21,11 @@ let mimeTypes = {
 
 //sql
 let db = new sqlite.Database('users.db');
- 
+
 db.serialize(function() {
   db.run("CREATE TABLE IF NOT EXISTS users (user TEXT PRIMARY KEY, pass TEXT)");
 });
 
-let app = express();
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json()); 
@@ -71,6 +73,10 @@ app.use('*', function(request, response){
   response.status(404).send("Not found");
 })
 
-app.listen(3000, function() {
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+http.listen(3000, function() {
   console.log('Server running at http://localhost:3000/');
 });

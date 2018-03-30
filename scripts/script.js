@@ -70,3 +70,8 @@ let passMatch = function(){
 
 document.getElementById('id-newpassword').addEventListener('keydown', passMatch)
 document.getElementById('id-newpassword2').addEventListener('keyup', passMatch)
+
+document.getElementById('button-join').addEventListener('click', function(){
+  let socket = io();
+});
+
