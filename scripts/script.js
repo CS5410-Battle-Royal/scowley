@@ -1,5 +1,8 @@
+let userId = '';
+
 document.getElementById('id-signup').hidden = true;
 document.getElementById('id-join').hidden = true;
+document.getElementById('id-game').hidden = true;
 
 document.getElementById('button-signin').addEventListener('click',function(){
     let req = new XMLHttpRequest();
@@ -15,6 +18,9 @@ document.getElementById('button-signin').addEventListener('click',function(){
         document.getElementById('id-join').hidden = false;
         document.getElementById('id-welcome').hidden = true;
         document.getElementById('id-signup').hidden = true;
+
+        userId = document.getElementById("id-username").value;
+
       } else {
         document.getElementById('id-signinerror').innerHTML = "Unknown Error";
       }
@@ -37,6 +43,9 @@ document.getElementById('button-signup').addEventListener('click',function(){
       document.getElementById('id-join').hidden = false;
       document.getElementById('id-welcome').hidden = true;
       document.getElementById('id-signup').hidden = true;
+
+      userId = document.getElementById("id-newusername").value;
+
     } else {
       document.getElementById('id-signinerror').innerHTML = "Unknown Error";
     }
@@ -73,5 +82,11 @@ document.getElementById('id-newpassword2').addEventListener('keyup', passMatch)
 
 document.getElementById('button-join').addEventListener('click', function(){
   let socket = io();
+  socket.on('connect', function(){
+    socket.emit('join', {name: userId});
+  });
+  document.getElementById('id-game').hidden = false;
+  document.getElementById('id-join').hidden = true;
+  
 });
 

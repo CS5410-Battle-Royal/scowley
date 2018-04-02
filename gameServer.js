@@ -32,6 +32,7 @@ app.use(bodyParser.json());
 
 app.use('/css',express.static(path.join(__dirname,'css')));
 app.use('/scripts',express.static(path.join(__dirname,'scripts')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/', function(request, response){
 
@@ -73,8 +74,20 @@ app.use('*', function(request, response){
   response.status(404).send("Not found");
 })
 
+let activeUsers = [];
+
 io.on('connection', function(socket){
-  console.log('a user connected');
+  socket.on('join', function(data){
+    console.log(data.name + ' with id ' + socket.id + ' connected');
+    activeUsers.push({
+      username: data.name,
+      socketId: socket.id
+    });
+
+    socket.on('disconnect', function(){
+      console.log(data.name + ' with id ' + socket.id + ' disconnected');
+    });
+  });
 });
 
 http.listen(3000, function() {
